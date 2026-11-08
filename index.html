@@ -21,5 +21,17 @@
 </head>
 <body>
   <iframe src="https://script.google.com/a/*/macros/s/AKfycbzAB-LumYjP2es_NPCHACmaPBgXBXuYW2-PkvL_NrpmWquEnn_migaNWnwtCPDQnC-1/exec"></iframe>
+
+  <script>
+    // Ping your Apps Script backend asynchronously on page load to log the visit
+    window.addEventListener('DOMContentLoaded', () => {
+      const trackingUrl = "https://script.google.com/a/*/macros/s/AKfycbzAB-LumYjP2es_NPCHACmaPBgXBXuYW2-PkvL_NrpmWquEnn_migaNWnwtCPDQnC-1/exec?action=log_visit&page=" + encodeURIComponent(window.location.href);
+      
+      // Use no-cors or standard fetch depending on your Apps Script deployment settings
+      fetch(trackingUrl, { method: 'GET', mode: 'no-cors' })
+        .catch(err => console.log('Tracking ping sent'));
+    });
+  </script>
+
 </body>
 </html>
